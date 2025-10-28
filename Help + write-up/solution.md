@@ -14,7 +14,7 @@
 
 ## Attack flow (what the player will do inside the app)
 
-+ 1.In the search box the player first submits:
+# 1.In the search box the player first submits:
 ```{{7*7}}```
 + This will render and show 49.
 
